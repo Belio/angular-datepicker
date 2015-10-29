@@ -61,7 +61,7 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
             return !datePickerUtils.isValidDate(value) || angular.isUndefined(minVal) || value >= minVal;
           };
           attrs.$observe('minDate', function (val) {
-            minVal = new Date($parse(val));
+            minVal = new Date(val);
             ngModel.$validate();
           });
         }
