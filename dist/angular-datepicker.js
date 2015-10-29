@@ -61,7 +61,7 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse',
             return !datePickerUtils.isValidDate(value) || angular.isUndefined(minVal) || value >= minVal;
           };
           attrs.$observe('minDate', function (val) {
-            minVal = new Date(val);
+            minVal = new Date($parse(val));
             ngModel.$validate();
           });
         }
@@ -577,7 +577,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
             return !datePickerUtils.isValidDate(value) || angular.isUndefined(minVal) || value >= minVal;
           };
         attrs.$observe('minDate', function (val) {
-            minVal = new Date(val);
+            minVal = new Date($parse(val));
             ngModel.$validate();
           });
       }
@@ -588,7 +588,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
             return !datePickerUtils.isValidDate(value) || angular.isUndefined(maxVal) || value <= maxVal;
           };
         attrs.$observe('maxDate', function (val) {
-            maxVal = new Date(val);
+            maxVal = new Date($parse(val));
             ngModel.$validate();
           });
       }
