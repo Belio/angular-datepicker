@@ -26,7 +26,7 @@ Module.filter('time', function () {
   };
 });
 
-Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function datePickerDirective(datePickerConfig, datePickerUtils) {
+Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse', function datePickerDirective(datePickerConfig, datePickerUtils, $parse) {
 
   //noinspection JSUnusedLocalSymbols
   return {
@@ -72,7 +72,7 @@ Module.directive('datePicker', ['datePickerConfig', 'datePickerUtils', function 
             return !datePickerUtils.isValidDate(value) || angular.isUndefined(maxVal) || value <= maxVal;
           };
           attrs.$observe('maxDate', function (val) {
-            maxVal = new Date(val);
+            maxVal = new Date($parse(val));
             ngModel.$validate();
           });
         }
@@ -498,8 +498,6 @@ Module.constant('dateTimeConfig', {
         (attrs.minView ? 'min-view="' + attrs.minView + '" ' : '') +
         (attrs.partial ? 'partial="' + attrs.partial + '" ' : '') +
         (attrs.step ? 'step="' + attrs.step + '" ' : '') +
-        (attrs.onSetDate ? 'on-set-date="' + attrs.onSetDate + '" ' : '') +
-        (attrs.ngModel ? 'ng-model="' + attrs.ngModel + '" ' : '') +
         'class="date-picker-date-time"></div>';
   },
   format: 'yyyy-MM-dd HH:mm',
