@@ -548,7 +548,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
         return dateFilter(value, format);
       }
 
-      /*
+      
       function parser(viewValue) {
         if(viewValue.length === format.length) {
           var date = moment(viewValue, datePickerUtils.toMomentFormat(format));
@@ -560,13 +560,13 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
         }
         return undefined;
       }
-      */
-      function parser(viewValue) {
+      
+      /*function parser(viewValue) {
         if(viewValue.length === format.length) {
           return viewValue;
         }
         return undefined;
-      }
+      }*/
 
       ngModel.$formatters.push(formatter);
       ngModel.$parsers.unshift(parser);
