@@ -55,6 +55,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
       var picker = null;
       var position = attrs.position || dateTimeConfig.position;
       var container = null;
+      var optional = attrs.optional;
 
       if (index === -1) {
         views.splice(index, 1);
@@ -67,7 +68,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
         return dateFilter(value, format);
       }
 
-      /*
+      
       function parser(viewValue) {
         if(viewValue.length === format.length) {
           var date = moment(viewValue, datePickerUtils.toMomentFormat(format));
@@ -77,15 +78,18 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
           }
           return viewValue;
         }
-        return undefined;
-      }
-      */
-      function parser(viewValue) {
-        if(viewValue.length === format.length) {
+        if (optional && viewValue.length==0){
           return viewValue;
         }
         return undefined;
       }
+      
+      /*function parser(viewValue) {
+        if(viewValue.length === format.length) {
+          return viewValue;
+        }
+        return undefined;
+      }*/
 
       ngModel.$formatters.push(formatter);
       ngModel.$parsers.unshift(parser);

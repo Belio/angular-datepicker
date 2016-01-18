@@ -535,6 +535,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
       var picker = null;
       var position = attrs.position || dateTimeConfig.position;
       var container = null;
+      var optional = attrs.optional;
 
       if (index === -1) {
         views.splice(index, 1);
@@ -555,6 +556,9 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
             clear();
             return date.toDate();
           }
+          return viewValue;
+        }
+        if (optional && viewValue.length==0){
           return viewValue;
         }
         return undefined;

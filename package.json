@@ -5,7 +5,10 @@
   "repository": {
     "url": "https://github.com/g00fy-/angular-datepicker.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13"
+  },
   "devDependencies": {
     "bower": "1.5.3",
     "grunt": "0.4.5",
