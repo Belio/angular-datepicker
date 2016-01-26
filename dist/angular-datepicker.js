@@ -556,7 +556,7 @@ Module.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfi
             clear();
             return date.toDate();
           }
-          return viewValue;
+          return undefined;
         }
         if (optional && viewValue.length==0){
           return viewValue;
